@@ -1,0 +1,24 @@
+{
+  "name": "Team-Tracker",
+  "version": "1.0.0",
+  "description": "A command-line application for managing a company's employees using node, inquirer, and MySQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boslarm/Employee-Tracker-.git"
+  },
+  "author": "Jordan Harris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Boslarm/Employee-Tracker-/issues"
+  },
+  "homepage": "https://github.com/Boslarm/Employee-Tracker-#readme",
+  "dependencies": {
+    "mysql": "^2.3.3",
+    "inquirer": "^8.2.4",
+    "console.table": "^0.10.0"
+  }
+}
