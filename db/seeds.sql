@@ -3,7 +3,7 @@ USE employee_db;
 INSERT INTO department (name)
 VALUES  ("Pediatrics"),
         ("Oncology"),
-        ("Hemotology"),
+        ("Hematology"),
         ("Clinic");
 
 INSERT INTO role (title, salary, department_id)
