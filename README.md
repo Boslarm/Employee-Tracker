@@ -4,7 +4,7 @@
 The purpose for this assignment was build a command-line application for managing a company's employees using node, inquirer, and MySQL.
 
 ## Video Walkthrough
-[Video]()
+[Video](https://app.castify.com/view/3394ff48-7d4e-4e55-9693-c7da16f668b5)
 
 ## User Story
 AS A business owner
