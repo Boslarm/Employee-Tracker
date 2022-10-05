@@ -62,7 +62,7 @@ function mainMenu() {
 //functions to view db
 function viewAllDepartments() {
     const query = 'SELECT * FROM department'
-    connection.query(query, function (err, res){
+    connection.query(query, function (err, res) {
         console.table(res);
         mainMenu();
     })
@@ -70,7 +70,7 @@ function viewAllDepartments() {
 
 function viewAllRoles() {
     const query = 'SELECT * FROM role'
-    connection.query(query, function (err, res){
+    connection.query(query, function (err, res) {
         console.table(res);
         mainMenu();
     })
@@ -78,14 +78,33 @@ function viewAllRoles() {
 
 function viewAllEmployees() {
     const query = 'SELECT * FROM employee'
-    connection.query(query, function (err, res){
+    connection.query(query, function (err, res) {
         console.table(res);
         mainMenu();
     })
 };
 
 // //functions to modify db
-function addDepartment()
+function addDepartment() {
+    inquirer
+        .prompt({
+            type: 'input',
+            message: 'Enter name of the department you would like to add.',
+            name: 'newDepartment'
+        })
+        .then(function (res) {
+            const newDepartment = res.newDepartment;
+            const query = `INSERT INTO department (name) VALUES ('${newDepartment}')`;
+            connection.query(query, function (err, res) {
+                if (err) { throw err; }
+            
+            console.table(res);
+            mainMenu();
+        });
+    });
+}
+
+
 
 // function addRole()
 
