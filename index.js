@@ -4,7 +4,6 @@ const consoleTable = require("console.table");
 
 const connection = mysql.createConnection({
     host: "localhost",
-    port: 3306,
     user: "root",
     password: "root",
     database: "employee_db"
@@ -22,19 +21,60 @@ function mainMenu() {
             {
                 type: 'list',
                 message: 'What would you like to do?',
-                name: 'MainMenu',
+                name: 'mainMenu',
                 choices: [
-                    'View All Employees',
-                    'View All Drpartments',
+                    'View All Departments',
                     'View All Roles',
-                    'Add Employee',
+                    'View All Employees',
                     'Add Department',
                     'Add Role',
+                    'Add Employee',
                     'Update Employee Role',
                     "Update Employee's Manager",
                     'Exit'
                 ]
             }
         )
-//switch statments will execute functions when choices are selected
+        //switch statments will execute functions when choices are selected
+        .then((res) => {
+            switch (res.mainMenu) {
+                case 'View All Departments': viewAllDepartments();
+                    break;
+                case 'View All Roles': viewAllRoles();
+                    break;
+                case 'View All Employees': viewAllEmployees();
+                    break;
+                case 'Add Department': addDepartment();
+                    break;
+                case 'Add Role': addRole();
+                    break;
+                case 'Add Employee': addEmployee();
+                    break;
+                case 'Update Employee Role': updateEmployeeRole();
+                    break;
+                case "Update Employee's Manager": updateEmployeeManager();
+                    break;
+                case 'Exit': connection.end();
+                    break;
+            }
+        });
+}
+//functions to view db
+function viewAllDepartments() {
+    console.log('hello')
 };
+
+// function viewAllRoles()
+
+// function viewAllEmployees()
+
+// //functions to modify db
+// function addDepartment()
+
+// function addRole()
+
+// function addEmployee()
+
+// function updateEmployeeRole()
+
+// function updateEmployeeManager()
