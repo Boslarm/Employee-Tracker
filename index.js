@@ -176,6 +176,28 @@ function addEmployee() {
     })
 }
 
-// function updateEmployeeRole()
-
-// function updateEmployeeManager()
+function updateEmployeeRole() {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: "Enter the employee's ID which you woule like to update.",
+            name: 'updateEmployee'
+        },
+        {
+            type: 'input',
+            message: 'Enter the new role ID for the employee.',
+            name: 'newEmployeeRole'
+        }
+    ])
+    .then(function (res) {
+        const updateEmployee = res.updateEmployee;
+        const newEmployeeRole = res.newEmployeeRole;
+        const queryUpdate = `UPDATE employee SET role_id = "${newEmployeeRole}" WHERE id = "${updateEmployee}"`;
+        connection.query(queryUpdate, function (err, res) {
+            if (err) {throw err;}
+            console.table(res);
+            mainMenu();
+        });
+    });
+}
