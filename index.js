@@ -30,7 +30,6 @@ function mainMenu() {
                     'Add Role',
                     'Add Employee',
                     'Update Employee Role',
-                    "Update Employee's Manager",
                     'Exit'
                 ]
             }
@@ -51,8 +50,6 @@ function mainMenu() {
                 case 'Add Employee': addEmployee();
                     break;
                 case 'Update Employee Role': updateEmployeeRole();
-                    break;
-                case "Update Employee's Manager": updateEmployeeManager();
                     break;
                 case 'Exit': connection.end();
                     break;
@@ -97,107 +94,107 @@ function addDepartment() {
             const query = `INSERT INTO department (name) VALUES ('${newDepartment}')`;
             connection.query(query, function (err, res) {
                 if (err) { throw err; }
-            
-            console.table(res);
-            mainMenu();
+
+                console.table(res);
+                mainMenu();
+            });
         });
-    });
 }
 
 
 
 function addRole() {
     inquirer
-    .prompt([
-        {
-            type: 'input',
-            message: 'Enter employee title.',
-            name: 'roleTitle'
-        },
-        {
-            type: 'input',
-            message: 'Enter employee salary.',
-            name: 'roleSalary'
-        },
-        {
-            type: 'input',
-            message: 'Enter employee Department ID.',
-            name: 'roleDepartment'
-        }
-    ])
-    .then(function (res) {
-        const title = res.roleTitle;
-        const salary = res.roleSalary;
-        const departmentID = res.roleDepartment;
-        const query = `INSERT INTO role (title, salary, department_id) VALUES ('${title}', '${salary}', '${departmentID}')`;
-        connection.query(query, function (err, res){
-            if (err) { throw err;}
-            console.table(res);
-            mainMenu();
+        .prompt([
+            {
+                type: 'input',
+                message: 'Enter employee title.',
+                name: 'roleTitle'
+            },
+            {
+                type: 'input',
+                message: 'Enter employee salary.',
+                name: 'roleSalary'
+            },
+            {
+                type: 'input',
+                message: 'Enter employee Department ID.',
+                name: 'roleDepartment'
+            }
+        ])
+        .then(function (res) {
+            const title = res.roleTitle;
+            const salary = res.roleSalary;
+            const departmentID = res.roleDepartment;
+            const query = `INSERT INTO role (title, salary, department_id) VALUES ('${title}', '${salary}', '${departmentID}')`;
+            connection.query(query, function (err, res) {
+                if (err) { throw err; }
+                console.table(res);
+                mainMenu();
+            })
         })
-    })
 }
 
 function addEmployee() {
     inquirer
-    .prompt([
-        {
-            type: 'input',
-            message: "Enter the employee's first name.",
-            name: 'firstName'
-        },
-        {
-            type: 'input',
-            message: "Enter the employee's last name.",
-            name: 'lastName'
-        },
-        {
-            type: 'input',
-            message: "Enter the employee's role ID.",
-            name: 'employeeRoleID'
-        },
-        {
-            type: 'input',
-            message: "Enter employee's manager ID.",
-            name: 'employeeManagerID'
-        }
-    ])
-    .then(function (res){
-        const firstName = res.firstName;
-        const lastName = res.lastName;
-        const employeeRoleID = res.employeeRoleID;
-        const employeeManagerID = res.employeeManagerID;
-        const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${firstName}', '${lastName}', '${employeeRoleID}', '${employeeManagerID}')`;
-        connection.query(query, function (err, res){
-            if (err) { throw err;}
-            console.table(res);
-            mainMenu();
+        .prompt([
+            {
+                type: 'input',
+                message: "Enter the employee's first name.",
+                name: 'firstName'
+            },
+            {
+                type: 'input',
+                message: "Enter the employee's last name.",
+                name: 'lastName'
+            },
+            {
+                type: 'input',
+                message: "Enter the employee's role ID.",
+                name: 'employeeRoleID'
+            },
+            {
+                type: 'input',
+                message: "Enter employee's manager ID.",
+                name: 'employeeManagerID'
+            }
+        ])
+        .then(function (res) {
+            const firstName = res.firstName;
+            const lastName = res.lastName;
+            const employeeRoleID = res.employeeRoleID;
+            const employeeManagerID = res.employeeManagerID;
+            const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${firstName}', '${lastName}', '${employeeRoleID}', '${employeeManagerID}')`;
+            connection.query(query, function (err, res) {
+                if (err) { throw err; }
+                console.table(res);
+                mainMenu();
+            })
         })
-    })
 }
 
 function updateEmployeeRole() {
     inquirer
-    .prompt([
-        {
-            type: 'input',
-            message: "Enter the employee's ID which you woule like to update.",
-            name: 'updateEmployee'
-        },
-        {
-            type: 'input',
-            message: 'Enter the new role ID for the employee.',
-            name: 'newEmployeeRole'
-        }
-    ])
-    .then(function (res) {
-        const updateEmployee = res.updateEmployee;
-        const newEmployeeRole = res.newEmployeeRole;
-        const queryUpdate = `UPDATE employee SET role_id = "${newEmployeeRole}" WHERE id = "${updateEmployee}"`;
-        connection.query(queryUpdate, function (err, res) {
-            if (err) {throw err;}
-            console.table(res);
-            mainMenu();
+        .prompt([
+            {
+                type: 'input',
+                message: "Enter the employee's ID which you woule like to update.",
+                name: 'updateEmployee'
+            },
+            {
+                type: 'input',
+                message: 'Enter the new role ID for the employee.',
+                name: 'newEmployeeRole'
+            }
+        ])
+        .then(function (res) {
+            const updateEmployee = res.updateEmployee;
+            const newEmployeeRole = res.newEmployeeRole;
+            const queryUpdate = `UPDATE employee SET role_id = "${newEmployeeRole}" WHERE id = "${updateEmployee}"`;
+            connection.query(queryUpdate, function (err, res) {
+                if (err) { throw err; }
+                console.table(res);
+                mainMenu();
+            });
         });
-    });
 }
