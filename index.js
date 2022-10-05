@@ -106,7 +106,37 @@ function addDepartment() {
 
 
 
-// function addRole()
+function addRole() {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: 'Enter employee title.',
+            name: 'roleTitle'
+        },
+        {
+            type: 'input',
+            message: 'Enter employee salary.',
+            name: 'roleSalary'
+        },
+        {
+            type: 'input',
+            message: 'Enter employee Department ID.',
+            name: 'roleDepartment'
+        }
+    ])
+    .then(function (res) {
+        const title = res.roleTitle;
+        const salary = res.roleSalary;
+        const departmentID = res.roleDepartment;
+        const query = `INSERT INTO role (title, salary, department_id) VALUES ('${title}', '${salary}', '${departmentID}')`;
+        connection.query(query, function (err, res){
+            if (err) { throw err;}
+            console.table(res);
+            mainMenu();
+        })
+    })
+}
 
 // function addEmployee()
 
