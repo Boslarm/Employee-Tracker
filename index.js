@@ -61,15 +61,31 @@ function mainMenu() {
 }
 //functions to view db
 function viewAllDepartments() {
-    console.log('hello')
+    const query = 'SELECT * FROM department'
+    connection.query(query, function (err, res){
+        console.table(res);
+        mainMenu();
+    })
 };
 
-// function viewAllRoles()
+function viewAllRoles() {
+    const query = 'SELECT * FROM role'
+    connection.query(query, function (err, res){
+        console.table(res);
+        mainMenu();
+    })
+};
 
-// function viewAllEmployees()
+function viewAllEmployees() {
+    const query = 'SELECT * FROM employee'
+    connection.query(query, function (err, res){
+        console.table(res);
+        mainMenu();
+    })
+};
 
 // //functions to modify db
-// function addDepartment()
+function addDepartment()
 
 // function addRole()
 
